@@ -35,9 +35,15 @@ public class StableMarriageAlgorithm {
             System.out.println("Male " + i + " preferences " + arrayOfStrings[i]);
         }
 
+        System.out.println();
+
         System.out.println("Female preferences: ");
-        for(int i = m-n; i < m; i++) {
-            System.out.println("Female " + i + " preferences " + arrayOfStrings[i]);
+        int j = m-n;
+        while(j < m) {
+            for (int i = 0; i < n; i++) {
+                System.out.println("Female " + i + " preferences " + arrayOfStrings[j]);
+                j++;
+            }
         }
 
     }
