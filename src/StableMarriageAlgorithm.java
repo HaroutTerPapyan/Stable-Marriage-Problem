@@ -9,6 +9,8 @@ import java.util.*;
 public class StableMarriageAlgorithm {
     private String inputFileName;
     private int n;
+    private int m;
+    private String arrayOfStrings[];
 
 
     public StableMarriageAlgorithm(String inputFileName) throws Exception{
@@ -19,17 +21,21 @@ public class StableMarriageAlgorithm {
     }
 
     public void printSMA() {
-        System.out.print("n is " + n);
+        System.out.println("n is " + n);
+        //System.out.println(arrayOfStrings[1]);
+        for (String readline : arrayOfStrings) {
+            System.out.println(readline);
+        }
     }
 
     private void readInputData() throws Exception{
         java.io.File inputFile = new java.io.File(inputFileName);
         Scanner input = new Scanner(inputFile);
         n = input.nextInt();
-        int m = (n+1)*2;
+        m = (n+1)*2;
 
         //Create an array of m strings
-        String arrayOfStrings[] = new String[m];
+        arrayOfStrings = new String[m];
 
 
         try {
@@ -59,16 +65,16 @@ public class StableMarriageAlgorithm {
                 }
             }
 
-
+            /*
             // print array
             for (String readline : arrayOfStrings) {
                 System.out.println(readline);
             }
+            */
 
             reader.close();
 
-            System.out.println();
-            System.out.println(arrayOfStrings[1]);
+
         }
 
 
