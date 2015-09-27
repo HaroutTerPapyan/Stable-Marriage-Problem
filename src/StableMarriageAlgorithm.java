@@ -88,10 +88,19 @@ public class StableMarriageAlgorithm {
             }
         }
 
-        System.out.println();
-        swap(maleC, 0, 1);
-        System.out.println();
+
+        //System.out.println();
+        //swap(maleC, 0, 1);
+        //System.out.println();
         //permute(java.util.Arrays.asList(3, 4, 5), 0);
+
+        System.out.println();
+        System.out.println("Male permutations: ");
+        permuteMale();
+
+        System.out.println();
+        System.out.println("Female permutations: ");
+        permuteFemale();
 
         /*
         System.out.println();
@@ -247,6 +256,36 @@ public class StableMarriageAlgorithm {
 
 */
 
+    public void permuteMale() {
+        int[] temp = Arrays.copyOf(maleC, maleC.length);
+        printAll(0,temp);
+    }
+
+    public void permuteFemale() {
+        int[] temp = Arrays.copyOf(femaleC, femaleC.length);
+        printAll(0,temp);
+    }
+
+    private void printAll(int index,int[] temp) {
+        if(index==n) {
+            System.out.println(Arrays.toString(temp));
+        }
+        else {
+            for(int i = index; i < n; i++) {//change the first element stepwise
+                swap(temp,index,i);//swap to change
+                printAll(index+1, temp);//call recursively
+                swap(temp,index,i);//swap again to backtrack
+            }
+        }
+    }
+
+    private void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j]  = temp;
+    }
+
+    /*
     //swapping works, must make recursive
     public static void swap(final int[] arr, final int pos1, final int pos2){
         final int temp = arr[pos1];
@@ -254,5 +293,5 @@ public class StableMarriageAlgorithm {
         arr[pos2] = temp;
         System.out.println(Arrays.toString(arr));
     }
-
+    */
 }
