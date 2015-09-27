@@ -15,6 +15,9 @@ public class StableMarriageAlgorithm {
     static int[][] males;
     static int[][] females;
 
+    static int[] maleC;
+    static int[] femaleC;
+
 
 
     public StableMarriageAlgorithm(String inputFileName) throws Exception{
@@ -28,6 +31,7 @@ public class StableMarriageAlgorithm {
 
     public void printSMA() {
         System.out.println("n is " + n);
+        System.out.println("m is " + m);
 
         System.out.println();
 
@@ -44,20 +48,50 @@ public class StableMarriageAlgorithm {
 
         System.out.println("Female preferences: ");
         int j;
-        for(int k = n; k < m; k++){
+        for(int i = n; i < m; i++){
             j = 0;
             for(int m = 0; m<n; m++){
-                females[j][m] = combined[k][m];
+                females[j][m] = combined[i][m];
                 System.out.printf("%2d ", females[j][m]);
             }
             j++;
             System.out.println();
         }
 
-        //permuations of n x 2
-        //eg n = 3
-        //need permuations of e1 e2 e3 vs a1 a2 a3
+        /*
+        permuations of n x 2
+        eg n = 3
+        need permuations of m1 m2 m3 vs f1 f2 f3
+        for males, have 0...n-1
+        for females have n...m-n
+        */
 
+        System.out.println();
+
+        //males
+        maleC = new int[n];
+        for(int i = 0; i < n; i++) {
+            maleC[i] = i;
+            System.out.println(maleC[i]);
+        }
+
+        System.out.println();
+
+        //females
+        femaleC = new int[n];
+        int x = n;
+        while(x<m) {
+            for(int k = 0; k < n; k++) {
+                femaleC[k] = x;
+                System.out.println(femaleC[k]);
+                x++;
+            }
+        }
+
+        System.out.println();
+        swap(maleC, 0, 1);
+        System.out.println();
+        //permute(java.util.Arrays.asList(3, 4, 5), 0);
 
         /*
         System.out.println();
@@ -159,6 +193,8 @@ public class StableMarriageAlgorithm {
     }
 
 
+/*
+    //dont need anymore
     public static List<String> combinations(int[][] twoDimStringArray) {
 
         int sizeArray[] = new int[twoDimStringArray.length];
@@ -194,7 +230,29 @@ public class StableMarriageAlgorithm {
         System.out.println(combinationList);
         return combinationList;
     }
+*/
 
+/*
+        //dont need anymore
+        static void permute(java.util.List<Integer> arr, int k){
+            for(int i = k; i < arr.size(); i++){
+                java.util.Collections.swap(arr, i, k);
+                permute(arr, k+1);
+                java.util.Collections.swap(arr, k, i);
+            }
+            if (k == arr.size() -1){
+                System.out.println(java.util.Arrays.toString(arr.toArray()));
+            }
+        }
 
+*/
+
+    //swapping works, must make recursive
+    public static void swap(final int[] arr, final int pos1, final int pos2){
+        final int temp = arr[pos1];
+        arr[pos1] = arr[pos2];
+        arr[pos2] = temp;
+        System.out.println(Arrays.toString(arr));
+    }
 
 }
