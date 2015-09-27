@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class SMATest {
     public static void main(String[] args) throws Exception {
-        StableMarriageAlgorithm sma = new StableMarriageAlgorithm("testCase1.txt");
+        StableMarriageAlgorithm sma = new StableMarriageAlgorithm("testCase2.txt");
     }
 
 }

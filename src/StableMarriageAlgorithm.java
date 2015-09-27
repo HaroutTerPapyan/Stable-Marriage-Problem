@@ -23,12 +23,12 @@ public class StableMarriageAlgorithm {
     public void printSMA() {
         System.out.println("n is " + n);
         //System.out.println(arrayOfStrings[1]);
-        /*
+
         //print all
         for (String readline : arrayOfStrings) {
             System.out.println(readline);
         }
-        */
+
 
         System.out.println("Male preferences: ");
         for(int i = 0; i < n; i++) {
@@ -73,7 +73,7 @@ public class StableMarriageAlgorithm {
             */
             reader.readLine();
             while ((line = reader.readLine()) != null) {
-                if(line.length() > 0) {
+                if(line.trim().length() > 0) {
                     arrayOfStrings[counter] = line;
                     counter++;
                 }
