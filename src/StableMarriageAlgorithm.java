@@ -23,16 +23,30 @@ public class StableMarriageAlgorithm {
     public void printSMA() {
         System.out.println("n is " + n);
         //System.out.println(arrayOfStrings[1]);
+        /*
+        //print all
         for (String readline : arrayOfStrings) {
             System.out.println(readline);
         }
+        */
+
+        System.out.println("Male preferences: ");
+        for(int i = 0; i < n; i++) {
+            System.out.println("Male " + i + " preferences " + arrayOfStrings[i]);
+        }
+
+        System.out.println("Female preferences: ");
+        for(int i = m-n; i < m; i++) {
+            System.out.println("Female " + i + " preferences " + arrayOfStrings[i]);
+        }
+
     }
 
     private void readInputData() throws Exception{
         java.io.File inputFile = new java.io.File(inputFileName);
         Scanner input = new Scanner(inputFile);
         n = input.nextInt();
-        m = (n+1)*2;
+        m = n*2;
 
         //Create an array of m strings
         arrayOfStrings = new String[m];
@@ -51,26 +65,13 @@ public class StableMarriageAlgorithm {
             while the counter is less than m. Skip empty lines
             The counter prevents us from reading in too many lines.
             */
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
-                if (line.trim().length() == 0) {
-                    continue;
-                }
-                else {
-
-                    while (((line = reader.readLine()) != null) && (counter < m)) {
-                        arrayOfStrings[counter] = line;
-                        counter++;
-                    }
-
+                if(line.length() > 0) {
+                    arrayOfStrings[counter] = line;
+                    counter++;
                 }
             }
-
-            /*
-            // print array
-            for (String readline : arrayOfStrings) {
-                System.out.println(readline);
-            }
-            */
 
             reader.close();
 
