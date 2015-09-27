@@ -8,9 +8,13 @@ import java.util.*;
 
 public class StableMarriageAlgorithm {
     private String inputFileName;
-    private int n;
-    private int m;
-    private String arrayOfStrings[];
+    private static int n; //col
+    private static int m; //row
+    //private String arrayOfStrings[];
+    static int[][] combined;
+    static int[][] males;
+    static int[][] females;
+
 
 
     public StableMarriageAlgorithm(String inputFileName) throws Exception{
@@ -18,18 +22,59 @@ public class StableMarriageAlgorithm {
         readInputData();
         printSMA();
 
+
+
     }
 
     public void printSMA() {
         System.out.println("n is " + n);
-        //System.out.println(arrayOfStrings[1]);
 
+        System.out.println("Male preferences: ");
+        for(int i = 0; i < n; i ++) {
+            for (int j = 0; j < n; j++){
+                males[i][j] = combined[i][j];
+                System.out.printf("%2d ", males[i][j]);
+            }
+            System.out.println();
+        }
+
+        System.out.println();
+
+        System.out.println("Female preferences: ");
+        int j;
+        for(int k = n; k < m; k++){
+            j = 0;
+            for(int m = 0; m<n; m++){
+                females[j][m] = combined[k][m];
+                System.out.printf("%2d ", females[j][m]);
+            }
+            j++;
+            System.out.println();
+        }
+
+        //permuations of n x 2
+        //eg n = 3
+        //need permuations of e1 e2 e3 vs a1 a2 a3
+
+
+        /*
+        System.out.println();
+        System.out.println("Male permuations: ");
+        combinations(males);
+
+        System.out.println();
+        System.out.println("Female permutations: ");
+        combinations(females);
+        */
+
+        //System.out.println(arrayOfStrings[1]);
+        /*
         //print all
         for (String readline : arrayOfStrings) {
             System.out.println(readline);
         }
-
-
+        */
+/*
         System.out.println("Male preferences: ");
         for(int i = 0; i < n; i++) {
             System.out.println("Male " + i + " preferences " + arrayOfStrings[i]);
@@ -45,32 +90,59 @@ public class StableMarriageAlgorithm {
                 j++;
             }
         }
+*/
+       //System.out.println(arrayOfStrings.length);
+
+        /*
+        int[] newArr = new int[arrayOfStrings.length];
+
+        for(int i = 0; i < n; i++) {
+            try {
+                newArr[i] = Integer.parseInt(arrayOfStrings[i]);
+                System.out.println(newArr[i]);
+            } catch (NumberFormatException nfe) {};
+
+
+        }
+        */
 
     }
 
     private void readInputData() throws Exception{
         java.io.File inputFile = new java.io.File(inputFileName);
         Scanner input = new Scanner(inputFile);
-        n = input.nextInt();
-        m = n*2;
+        n = input.nextInt(); //col
+        m = n*2; //row
+
+        combined = new int[m][n];
+        males = new int[n][n];
+        females = new int[n][n];
+
+        while(input.hasNext()) {
+            for(int i = 0; i < m; i++){
+                for(int j = 0; j < n; j++) {
+                    combined[i][j] = input.nextInt();
+                    System.out.printf("%2d", combined[i][j]);
+                }
+                System.out.println();
+            }
+        }
 
         //Create an array of m strings
-        arrayOfStrings = new String[m];
-
-
+        //arrayOfStrings = new String[m];
+/*
         try {
             // Create a bufferreader object to read our file with.
             BufferedReader reader = new BufferedReader(new FileReader(inputFileName));
-
             String line = ""; // Line will hold our line read from the file
-
             int counter = 0; //track num lines read
-
+*/
             /*
             Read in a line from the file and store it in "line". Do this while we don't hit null or
             while the counter is less than m. Skip empty lines
             The counter prevents us from reading in too many lines.
             */
+/*
             reader.readLine();
             while ((line = reader.readLine()) != null) {
                 if(line.trim().length() > 0) {
@@ -78,19 +150,48 @@ public class StableMarriageAlgorithm {
                     counter++;
                 }
             }
-
             reader.close();
-
-
         }
-
-
         catch (Exception ex) { System.out.println("Exception: " + ex.getMessage()); }
+*/
     }
 
 
+    public static List<String> combinations(int[][] twoDimStringArray) {
 
+        int sizeArray[] = new int[twoDimStringArray.length];
 
+        int counterArray[] = new int[twoDimStringArray.length];
+
+        int totalCombinationCount = 1;
+        for(int i = 0; i < twoDimStringArray.length; ++i) {
+            sizeArray[i] = twoDimStringArray[i].length;
+            totalCombinationCount *= twoDimStringArray[i].length;
+        }
+
+        List<String> combinationList = new ArrayList<String>(totalCombinationCount);
+
+        StringBuilder sb;  
+
+        for (int countdown = totalCombinationCount; countdown > 0; --countdown) {
+
+            sb = new StringBuilder();
+            for(int i = 0; i < twoDimStringArray.length; ++i) {
+                sb.append(twoDimStringArray[i][counterArray[i]]);
+            }
+            combinationList.add(sb.toString());  // add new combination to list
+
+            for(int incIndex = twoDimStringArray.length - 1; incIndex >= 0; --incIndex) {
+                if(counterArray[incIndex] + 1 < sizeArray[incIndex]) {
+                    ++counterArray[incIndex];
+                    break;
+                }
+                counterArray[incIndex] = 0;
+            }
+        }
+        System.out.println(combinationList);
+        return combinationList;
+    }
 
 
 
