@@ -29,6 +29,8 @@ public class StableMarriageAlgorithm {
     public void printSMA() {
         System.out.println("n is " + n);
 
+        System.out.println();
+
         System.out.println("Male preferences: ");
         for(int i = 0; i < n; i ++) {
             for (int j = 0; j < n; j++){
@@ -122,9 +124,9 @@ public class StableMarriageAlgorithm {
             for(int i = 0; i < m; i++){
                 for(int j = 0; j < n; j++) {
                     combined[i][j] = input.nextInt();
-                    System.out.printf("%2d", combined[i][j]);
+                    //System.out.printf("%2d", combined[i][j]);
                 }
-                System.out.println();
+                //System.out.println();
             }
         }
 
@@ -171,7 +173,7 @@ public class StableMarriageAlgorithm {
 
         List<String> combinationList = new ArrayList<String>(totalCombinationCount);
 
-        StringBuilder sb;  
+        StringBuilder sb;
 
         for (int countdown = totalCombinationCount; countdown > 0; --countdown) {
 
