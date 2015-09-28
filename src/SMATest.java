@@ -9,6 +9,7 @@ public class SMATest {
         //StableMarriageAlgorithm sma1 = new StableMarriageAlgorithm("testCase1.txt");
         //StableMarriageAlgorithm sma2 = new StableMarriageAlgorithm("testCase2.txt");
         StableMarriageAlgorithm sma3 = new StableMarriageAlgorithm("testCase3.txt");
+
     }
 
 }
